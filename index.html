@@ -188,7 +188,7 @@
             backdrop-filter: blur(20px);
             border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 20px;
-            padding: 15px;
+            padding: 20px;
             opacity: 0;
             visibility: hidden;
             transform: translateY(-20px) scale(0.95);
@@ -204,74 +204,31 @@
             visibility: visible;
             transform: translateY(0) scale(1);
         }
-        /* Search Box */
-        .search-box {
-            position: relative;
-            margin-bottom: 15px;
-        }
-        .search-box input {
-            width: 100%;
-            padding: 15px 45px 15px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            color: white;
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-        .search-box input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-        .search-box input:focus {
-            border-color: rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-        }
-        .search-box i {
-            position: absolute;
-            right: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1.1rem;
-        }
         /* Options Container */
         .options-container {
-            overflow-y: auto;
-            overflow-x: hidden;
-            max-height: 320px;
-            padding-right: 5px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
-        /* Custom Scrollbar */
-        .options-container::-webkit-scrollbar {
-            width: 8px;
-        }
-        .options-container::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-        }
-        .options-container::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #667eea, #764ba2);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-        .options-container::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, #764ba2, #667eea);
-        }
-        /* Option Item */
+        /* Option Item as Button in Oval */
         .option {
-            padding: 15px 20px;
+            padding: 16px 24px;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 15px;
             cursor: pointer;
-            border-radius: 12px;
-            color: rgba(255, 255, 255, 0.8);
+            border-radius: 50px; /* Овал */
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
             transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             position: relative;
             overflow: hidden;
-            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-decoration: none;
             opacity: 0;
             animation: slideIn 0.5s forwards;
         }
@@ -288,19 +245,19 @@
             width: 0;
             height: 0;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2);
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
         }
         .option:hover::before {
-            width: 300px;
-            height: 300px;
+            width: 400px;
+            height: 400px;
         }
         .option:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            transform: translateX(10px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            border-color: rgba(255, 255, 255, 0.4);
         }
         .option i {
             font-size: 1.4rem;
@@ -314,67 +271,9 @@
         }
         .option span {
             flex: 1;
-            font-size: 1rem;
+            font-size: 1.1rem;
             position: relative;
             z-index: 1;
-        }
-        .option.selected {
-            background: linear-gradient(
-                135deg,
-                rgba(102, 126, 234, 0.3),
-                rgba(118, 75, 162, 0.3)
-            );
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .option.selected::after {
-            content: "\f00c";
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            color: #4ade80;
-            font-size: 1.2rem;
-            animation: checkBounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        @keyframes checkBounce {
-            0% {
-                transform: scale(0) rotate(0deg);
-            }
-            50% {
-                transform: scale(1.3) rotate(180deg);
-            }
-            100% {
-                transform: scale(1) rotate(360deg);
-            }
-        }
-        .option.hidden {
-            display: none;
-        }
-        /* No Results Message */
-        .no-results {
-            text-align: center;
-            padding: 40px 20px;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 1.1rem;
-            display: none;
-        }
-        .no-results.show {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-        .no-results i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            opacity: 0.5;
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
         /* Ripple Effect */
         .ripple {
@@ -408,12 +307,11 @@
             }
             .dropdown {
                 max-height: 400px;
-            }
-            .options-container {
-                max-height: 280px;
+                padding: 18px;
             }
             .option {
-                padding: 12px 15px;
+                padding: 14px 20px;
+                font-size: 1rem;
             }
         }
         @media (max-width: 480px) {
@@ -427,9 +325,12 @@
             .dropdown {
                 border-radius: 15px;
                 max-height: 350px;
+                padding: 15px;
             }
-            .options-container {
-                max-height: 240px;
+            .option {
+                padding: 12px 18px;
+                font-size: 0.95rem;
+                border-radius: 45px;
             }
         }
         /* Staggered Animation Delays - only for 3 options */
@@ -471,32 +372,20 @@
             
             <!-- Dropdown -->
             <div class="dropdown">
-                <!-- Search Box -->
-                <div class="search-box">
-                    <input type="text" placeholder="Поиск проектов..." id="searchInput">
-                    <i class="fas fa-search"></i>
-                </div>
-                
                 <!-- Options Container -->
                 <div class="options-container">
-                    <div class="option" data-value="doc1" data-icon="fa-file" data-url="https://drive.google.com/drive/folders/1vSP8YUYmkggo6Kfbh6NGLss-mLNrWiyw?usp=drive_link">
+                    <a href="https://drive.google.com/drive/folders/1vSP8YUYmkggo6Kfbh6NGLss-mLNrWiyw?usp=drive_link" target="_blank" class="option" data-value="doc1" data-icon="fa-file">
                         <i class="fas fa-file" style="color: #f43f5e;"></i>
                         <span>Документ 1</span>
-                    </div>
-                    <div class="option" data-value="doc2" data-icon="fa-file-alt" data-url="https://drive.google.com/drive/folders/1QJ7j5i420zcBDh8Z7S44vapdpTwUrgnD?usp=drive_link">
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1QJ7j5i420zcBDh8Z7S44vapdpTwUrgnD?usp=drive_link" target="_blank" class="option" data-value="doc2" data-icon="fa-file-alt">
                         <i class="fas fa-file-alt" style="color: #3b82f6;"></i>
                         <span>Документ 2</span>
-                    </div>
-                    <div class="option" data-value="figma" data-icon="fa-diagram-project" data-url="https://www.figma.com/design/ZjiDBiQAYE3BRk89FDqK9n/%D0%B1%D1%83%D1%80%D0%B3%D0%B5%D1%80%D1%8B%D0%B1%D0%BE%D0%B1%D0%B0-?node-id=0-1&t=hzi1NzKmgW6BlrC5-1">
+                    </a>
+                    <a href="https://www.figma.com/design/ZjiDBiQAYE3BRk89FDqK9n/%D0%B1%D1%83%D1%80%D0%B3%D0%B5%D1%80%D1%8B%D0%B1%D0%BE%D0%B1%D0%B0-?node-id=0-1&t=hzi1NzKmgW6BlrC5-1" target="_blank" class="option" data-value="figma" data-icon="fa-diagram-project">
                         <i class="fas fa-diagram-project" style="color: #8b5cf6;"></i>
                         <span>Figma проект</span>
-                    </div>
-                </div>
-                
-                <!-- No Results Message -->
-                <div class="no-results">
-                    <i class="fas fa-search"></i>
-                    <p>Проекты не найдены!</p>
+                    </a>
                 </div>
             </div>
         </div>
@@ -506,11 +395,7 @@
         // DOM Elements
         const selectTrigger = document.querySelector(".select-trigger");
         const dropdown = document.querySelector(".dropdown");
-        const selectedOption = document.querySelector(".selected-option");
-        const searchInput = document.getElementById("searchInput");
-        const optionsContainer = document.querySelector(".options-container");
         const options = document.querySelectorAll(".option");
-        const noResults = document.querySelector(".no-results");
         
         // Toggle Dropdown
         selectTrigger.addEventListener("click", function (e) {
@@ -522,11 +407,7 @@
             selectTrigger.classList.toggle("active");
             dropdown.classList.toggle("active");
             if (dropdown.classList.contains("active")) {
-                searchInput.focus();
                 resetAnimations();
-            } else {
-                searchInput.value = "";
-                filterOptions("");
             }
         }
         
@@ -539,61 +420,6 @@
                 }, 10);
             });
         }
-        
-        // Option Selection - now opens link in new tab
-        options.forEach((option) => {
-            option.addEventListener("click", function (e) {
-                createRipple(e, this);
-                const url = this.getAttribute("data-url");
-                if (url) {
-                    window.open(url, "_blank");
-                }
-            });
-        });
-        
-        // Live Search Functionality
-        searchInput.addEventListener("input", function (e) {
-            const searchTerm = e.target.value.toLowerCase();
-            filterOptions(searchTerm);
-        });
-        
-        function filterOptions(searchTerm) {
-            let visibleCount = 0;
-            options.forEach((option) => {
-                const text = option.querySelector("span").textContent.toLowerCase();
-                if (text.includes(searchTerm)) {
-                    option.classList.remove("hidden");
-                    visibleCount++;
-                } else {
-                    option.classList.add("hidden");
-                }
-            });
-            // Show/hide no results message
-            if (visibleCount === 0) {
-                noResults.classList.add("show");
-                optionsContainer.style.display = "none";
-            } else {
-                noResults.classList.remove("show");
-                optionsContainer.style.display = "block";
-            }
-        }
-        
-        // Click Outside to Close
-        document.addEventListener("click", function (e) {
-            if (!e.target.closest(".custom-select")) {
-                selectTrigger.classList.remove("active");
-                dropdown.classList.remove("active");
-                searchInput.value = "";
-                filterOptions("");
-            }
-        });
-        
-        // Keyboard Support (ESC to close)
-        document.addEventListener("keydown", function (e) {
-            if (e.key === "Escape" && dropdown.classList.contains("active")) {
-                toggleDropdown();
-            }
-        });
         
         // Ripple Effect Function
         function createRipple(event, element) {
@@ -612,42 +438,27 @@
             }, 600);
         }
         
-        // Prevent dropdown close on search input click
-        searchInput.addEventListener("click", function (e) {
-            e.stopPropagation();
+        // Click Outside to Close
+        document.addEventListener("click", function (e) {
+            if (!e.target.closest(".custom-select")) {
+                selectTrigger.classList.remove("active");
+                dropdown.classList.remove("active");
+            }
         });
         
-        // Touch Support for Mobile
-        let touchStartY = 0;
-        let touchEndY = 0;
-        dropdown.addEventListener(
-            "touchstart",
-            function (e) {
-                touchStartY = e.changedTouches[0].screenY;
-            },
-            { passive: true }
-        );
-        dropdown.addEventListener(
-            "touchend",
-            function (e) {
-                touchEndY = e.changedTouches[0].screenY;
-                handleSwipe();
-            },
-            { passive: true }
-        );
-        
-        function handleSwipe() {
-            if (touchEndY > touchStartY + 50) {
-                // Swipe down detected - close dropdown
-                if (optionsContainer.scrollTop === 0) {
-                    toggleDropdown();
-                }
+        // Keyboard Support (ESC to close)
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && dropdown.classList.contains("active")) {
+                toggleDropdown();
             }
-        }
+        });
         
-        // Add smooth scroll behavior
-        optionsContainer.addEventListener("wheel", function (e) {
-            e.stopPropagation();
+        // Prevent dropdown close on option click (since they are links now)
+        options.forEach(option => {
+            option.addEventListener("click", function(e) {
+                // Allow link to open, but don't close dropdown immediately
+                // Dropdown will close naturally if user clicks elsewhere or navigates away
+            });
         });
         
         // Initial setup
